@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="layui-v2.5.5/layui/css/layui.css"/>
+	</head>
+	<body>
+		<div id="test1"></div>
+		<script src="layui-v2.5.5/layui/layui.js"></script>
+		<script>
+			 layui.use('tree', function(){
+			    var tree = layui.tree;
+			    //渲染
+			    var inst1 = tree.render({
+			      elem: '#test1'  //绑定元素
+				  ,edit: ['add', 'update', 'del']
+				  ,click: function(obj){
+					  console.log(obj.elem); //得到当前节点元素
+					  console.log(obj.data.children); //当前节点下是否有子节点
+				  }
+				  ,operate: function(obj){
+				      var type = obj.type; //得到操作类型：add、edit、del
+				      var data = obj.data; //得到当前节点的数据
+				      var elem = obj.elem; //得到当前节点元素
+				      
+				      // //Ajax 操作
+				      // var id = data.id; //得到节点索引
+				      // if(type === 'add'){ //增加节点
+				      //   //返回 key 值
+				      //   return 123;
+				      // } else if(type === 'update'){ //修改节点
+				      //   console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
+				      // } else if(type === 'del'){ //删除节点
+				        
+				      // };
+				   }
+			      ,data: [{
+			        title: '江西' //一级菜单
+			        ,children: [{
+			          title: '南昌' //二级菜单
+			          ,children: [{
+			            title: '高新区' //三级菜单
+			            //…… //以此类推，可无限层级
+			          }]
+			        }]
+			      },{
+			        title: '陕西' //一级菜单
+			        ,children: [{
+			          title: '西安' //二级菜单
+			        }]
+			      }]
+			    });
+			  });
+		</script>
+	</body>
+</html>
